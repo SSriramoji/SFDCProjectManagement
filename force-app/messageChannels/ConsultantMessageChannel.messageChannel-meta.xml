@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+
+    <description>This Lightning Message Channel is used for demo purpose</description>
+
+    <isExposed>true</isExposed>
+
+    <lightningMessageFields>
+
+        <description>Holds name of the source cmp publishing the message</description>
+
+        <fieldName>source</fieldName>
+
+    </lightningMessageFields>
+
+    <lightningMessageFields>
+
+        <description>Holds actual message</description>
+
+        <fieldName>data</fieldName>
+
+    </lightningMessageFields>
+
+    <masterLabel>ConsultantMessageChannel</masterLabel>
+
+</LightningMessageChannel>

@@ -1,0 +1,89 @@
+<template>
+    <lightning-card  title="Employees In Free Pool">
+    <div class="tableDiv"  key={listOfEmployees.Id}>
+        <div class="tableDiv">
+            <table aria-describedby="consultant-list" class="slds-table  slds-table_bordered ">
+  
+                <!--Header of the table-->
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="slds-size_1-of-3 " scope="col">
+                            <div class="slds-truncate " title="Consultant Name">Employee Name</div>
+                        </th>
+                        <th class="slds-size_1-of-3 " scope="col">
+                            <div class="slds-truncate " title="Role in Project">Skills</div>
+                        </th>
+                       
+                        <th class="slds-size_1-of-3 " scope="col">
+                            <div class="slds-truncate " title="Start Date">Assign to Project</div>
+                        </th>
+                       
+                    </tr>
+                </thead>
+  
+                <!--Body of the table-->
+                <tbody>
+                    <template for:each={listOfEmployees} for:item="item" for:index="indexVar">
+                        <tr key={item.Id} class="slds-hint-parent">
+                            <td class="slds-size_1-of-3">
+                                <div>
+                                    {item.Name}
+                                </div>
+                            </td>
+                            <td class="slds-size_1-of-3">
+                                <div>
+                                    {item.Skills__c}
+                                </div>
+                            </td>
+                            
+                            <td class="slds-size_1-of-3">
+                                <div>
+                                    <lightning-button-icon data-name={item.Name} data-id={item.Id} icon-name="utility:add" onclick={handleAssignProject} class="slds-m-left_xx-small"
+                                     variant="brand" alternative-text="Assign Consultant To Project"></lightning-button-icon>
+                                </div>
+                            </td>
+                            
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</lightning-card>
+
+<template if:true={isModalOpen}>
+    <!-- Modal/Popup Box LWC starts here -->
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <!-- Modal/Popup Box LWC header here -->
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                    <lightning-icon icon-name="utility:close"
+                        alternative-text="close"
+                        variant="inverse"
+                        size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Assign Employee to Project</h2>
+            </header>
+            <!-- Modal/Popup Box LWC body starts here -->
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <lightning-record-form
+    object-api-name="Consultant__c"
+    fields={consultantRecordFields}
+    onsubmit={handleSubmit}
+                onsuccess={handleSuccess}
+                oncancel ={handleCancel}
+>
+</lightning-record-form>
+            </div>
+            <!-- Modal/Popup Box LWC footer starts here -->
+            <footer class="slds-modal__footer">
+                <!-- <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+                <button class="slds-button slds-button_brand" onclick={submitDetails} title="OK">OK</button> -->
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+</template>

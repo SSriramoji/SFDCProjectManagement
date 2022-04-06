@@ -1,0 +1,56 @@
+<template>
+    <template if:true={showSpinner}>
+    <div class="lightning-spinner">
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </div>
+</template>
+   <template for:each={listOfProjectAndConsultant} for:item="projects">
+   <c-custom-section-header-l-w-c key={projects.project} header-name={projects.project} sub-header="Manager Name" ></c-custom-section-header-l-w-c>
+   <div class="tableDiv"  key={projects.project}>
+      <div class="tableDiv">
+          <table aria-describedby="consultant-list" class="slds-table  slds-table_bordered ">
+
+              <!--Header of the table-->
+              <thead>
+                  <tr class="slds-line-height_reset">
+                      <th class="slds-size_1-of-3 " scope="col">
+                          <div class="slds-truncate " title="Consultant Name">Consultant Name</div>
+                      </th>
+                      <th class="slds-size_1-of-3 " scope="col">
+                          <div class="slds-truncate " title="Role in Project">Role In Project</div>
+                      </th>
+                      <th class="slds-size_1-of-3 " scope="col">
+                          <div class="slds-truncate " title="Start Date">Start Date</div>
+                      </th>
+                     
+                  </tr>
+              </thead>
+
+              <!--Body of the table-->
+              <tbody>
+                  <template for:each={projects.listOfConsultant} for:item="item" for:index="indexVar">
+                      <tr key={item.Id} class="slds-hint-parent">
+                          <td class="slds-size_1-of-3">
+                              <div>
+                                  {item.Employee__r.name}
+                              </div>
+                          </td>
+                          <td class="slds-size_1-of-3">
+                              <div>
+                                  {item.Role_in_Project__c}
+                              </div>
+                          </td>
+                          <td class="slds-size_1-of-3">
+                              <div>
+                                  {item.Start_Date__c}
+                              </div>
+                          </td>
+                          
+                      </tr>
+                  </template>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</template>
+</template>
